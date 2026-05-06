@@ -78,6 +78,8 @@ The algorithm stops when:
 * Maximum iterations reached
 
 
+---
+
 ## Datasets 
 
 Widely used datasets for evaluating fairness in clustering and classification tasks. Each dataset includes sensitive attributes, making them benchmarks for bias and fairness research.
