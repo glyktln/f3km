@@ -1,70 +1,81 @@
-# Fair Forced K-Means
+# F3KM – Fairness-Aware K-Means Clustering
 
-This repository implements **Fair Forced K-Means**,**F3KM** a fairness-aware extension of the classic K-Means clustering algorithm.
+## Overview
 
-
-The method modifies the standard assignment step of K-Means in order to produce **more balanced clusters with respect to a binary sensitive attribute** (e.g., gender, race), while preserving good clustering quality.
-
----
-
-## Motivation
-
-Standard K-Means clusters points based only on distance.
-As a result, clusters may become highly imbalanced with respect to sensitive attributes.
-
-**Fair K-Means** addresses this issue by introducing a **fairness-aware force** that influences point assignments, encouraging clusters to move toward balanced compositions.
-
----
+This project implements **F3KM**, a fairness-aware extension of K-Means clustering.
+The algorithm incorporates a **protected attribute (binary: 0/1)** into the clustering process, aiming to balance groups within each cluster while maintaining clustering quality.
 
 ## Key Idea
 
-Each point is influenced by:
+F3KM modifies standard K-Means by:
 
-1. **Geometric attraction** to nearby centroids (as in standard K-Means)
-2. **Fairness-aware interaction** based on the imbalance of each cluster (imbalance = 1- balance(c))
+* Adjusting **assignment step** using fairness-aware forces
+* Modifying **centroid updates** to reduce imbalance
+* Introducing a trade-off parameter `lambda_` between **quality and fairness**
 
-These two effects are combined using a single parameter λ, which controls the trade-off between clustering quality and fairness.
+## Features
 
----
+* Multiple initialization strategies:
 
-## How It Works
+  * `random_centroids`
+  * `random_labels`
+  * `random_c_kmeans`
+* Multiple centroid update rules:
 
-* Each data point has a binary sensitive attribute (e.g., red / blue)
-* Each cluster has imbalance based on balance metric
-* Clusters with strong imbalance exert a strong influence
-* Points are assigned to the cluster with the strongest combined influence/force
-* Centroids are updated as usual
-* The process repeats until convergence
+  * `standard`
+  * `simple_weighted`
+  * `shifted`
+  * `weighted`
+  * 
+* Supports:
+  * **Normalized (`norm`)** and **unnormalized (`unorm`)** balance
 
-When ( λ = 0 ), the algorithm behaves exactly like standard K-Means.
-
----
-
-## Usage Example
-
+## Usage
 ```python
-model = KMeansBalanced(
-    n_clusters=3,
-    lambda_=0.3,
+model = F3KMEANS(
+    n_clusters=10,
+    type_balance='norm',
+    type_init='random_c_kmeans',
+    type_update_centroids='shifted',
+    lambda_=0.5
 )
-model.fit(X, sensitive_attributes)
-labels = model.labels_
+
+model.fit(X, attributes)
+fairness = model.fairness_metrics()
+quality = model.quality_metrics(X)
 ```
 
----
+## Inputs
 
-## Notes
+* `X`: feature matrix (numpy array)
+* `attributes`: binary protected attribute (0/1)
 
-* Designed for binary sensitive attributes
-* Keeps the simplicity and scalability of K-Means
-* Introduces fairness without hard constraints
-* Easy to tune through a single parameter
+## Outputs
+
+* `labels_`: cluster assignments
+* `centroids`: final cluster centers
+* `fairness_metrics()`: fairness evaluation
+* `quality_metrics()`: clustering quality
+
+## Fairness Metrics
+
+* `Balance`: average ratio of minority to majority group within clusters
+* `N_Balance`: average normalized balance
+* `FR`: worst-case cluster balance
+* `FR_norm`: normalized worst-case bairness
+
+## Quality Metrics
+
+* `Silhouette`: cluster separation
+* `SSE`: sum of squared errors
+
+## Termination
+
+The algorithm stops when:
+
+* Centroids converge
+* Oscillation is detected
+* Maximum iterations reached
 
 
----
-
-## Dependencies
-
-* numpy
-* scikit-learn
 
