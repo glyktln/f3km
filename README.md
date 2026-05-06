@@ -1,6 +1,7 @@
-# Fair K-Means
+# Fair Forced K-Means
 
-This repository implements **Fair K-Means**, a fairness-aware extension of the classic K-Means clustering algorithm.
+This repository implements **Fair Forced K-Means**,**F3KM** a fairness-aware extension of the classic K-Means clustering algorithm.
+
 
 The method modifies the standard assignment step of K-Means in order to produce **more balanced clusters with respect to a binary sensitive attribute** (e.g., gender, race), while preserving good clustering quality.
 
