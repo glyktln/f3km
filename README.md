@@ -20,19 +20,20 @@ F3KM modifies standard K-Means by:
   * `random_centroids`
   * `random_labels`
   * `random_c_kmeans`
+    
 * Multiple centroid update rules:
 
   * `standard`
+  * `weighted`
   * `simple_weighted`
   * `shifted`
-  * `weighted`
-  * 
+
 * Supports:
   * **Normalized (`norm`)** and **unnormalized (`unorm`)** balance
 
 ## Usage
 ```python
-model = F3KMEANS(
+model = F3KM(
     n_clusters=10,
     type_balance='norm',
     type_init='random_c_kmeans',
