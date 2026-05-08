@@ -118,4 +118,17 @@ This approach was strictly chosen over simple random sampling to ensure **Data I
 This results in highly representative subsets (`_sampled.txt` and `_Color_sampled.txt`) that drastically accelerate the algorithm testing phase without compromising the predictive validity or the fairness evaluation of the final machine learning models.
 
 
+## Sampled Datasets Overview
+
+The table below details the final dimensions of the datasets after preprocessing, cleaning, and Stratified Sampling. The "Features" column represents the exact number of numerical columns retained in the `[dataset]_sampled.txt` files for clustering, completely isolated from the Protected Attribute.
+
+| Dataset | Sampling Fraction | Sampled Rows | Features (Columns) | Protected Attribute File |
+|---------|-------------------|--------------|--------------------|--------------------------|
+| **Adult (Census Income)** | 10% | 3,256 | 6 | `adult_Color_sampled.txt` (Gender) |
+| **Bank Marketing** | 10% | 4,111 | 9 | `bank_Color_sampled.txt` (Marital Status)|
+| **Credit Card Default** | 10% | 3,000 | 14 | `credit_card_Color_sampled.txt` (Gender) |
+| **Census (US 1990)** | 2% | 49,166 | 67* | `uscensus_Color_sampled.txt` (Gender) |
+
+*\*Note for US Census 1990: The original raw file contained 69 columns (caseid + 68 attributes). The highly identifying `caseid` and the protected `iSex` attributes were removed, leaving exactly 67 numerical features for the clustering algorithms.*
+
 
