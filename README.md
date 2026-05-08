@@ -97,10 +97,10 @@ Widely used datasets for evaluating fairness in clustering and classification ta
 
 | Dataset | Cleaned Samples | Features | Protected Attribute | Description | Source |
 |---------|-----------------|----------|---------------------|--------------------|--------|
-| **Adult (Census Income)** | 32,561 | 14 | Gender (Sex) | Predict whether income > $50K/year based on demographic and employment info. | [Link](https://archive.ics.uci.edu/dataset/2/adult) |
-| **Bank Marketing** | 41,108 | 16 | Marital Status | Predict if a client subscribes to a term deposit from Portuguese bank campaigns. | [Link](https://archive.ics.uci.edu/dataset/222/bank+marketing) |
-| **Credit Card Default** | 30,000 | 23 | Gender (Sex) | Predict probability of credit card default based on demographic and repayment history. | [Link](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients) |
-| **Census (US 1990)** | 2,458,285 | 68 | Gender (Sex) | Socio-economic dataset from US Census Bureau, widely used as a benchmark for fair clustering. | [Link](https://archive.ics.uci.edu/dataset/116/us+census+data+1990) |
+| **Adult (Census Income)** | 32,561 | 6 | Gender (Sex) | Predict whether income > $50K/year based on demographic and employment info. | [Link](https://archive.ics.uci.edu/dataset/2/adult) |
+| **Bank Marketing** | 41,108 | 9 | Marital Status( Married - no married) | Predict if a client subscribes to a term deposit from Portuguese bank campaigns. | [Link](https://archive.ics.uci.edu/dataset/222/bank+marketing) |
+| **Credit Card Default** | 30,000 | 14 | Gender (Sex) | Predict probability of credit card default based on demographic and repayment history. | [Link](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients) |
+| **Census (US 1990)** | 2,458,285 | 67 | Gender (Sex) | Socio-economic dataset from US Census Bureau, widely used as a benchmark for fair clustering. | [Link](https://archive.ics.uci.edu/dataset/116/us+census+data+1990) |
 | **Diabetes (Hospital)** | 101K | 47 | Race, Gender, Age | Predict 30-day readmission from 10 years of US hospital diabetic patient records. | [Link](https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008) |
 | **ACSIncome** | 1,66M | 10 | Gender, Race | Modern alternative to Adult dataset (2018). Predict income with flexible thresholds. | [Link](https://www.openml.org/search?type=data&sort=runs&id=43141&status=active) |
 
@@ -122,12 +122,12 @@ This results in highly representative subsets (`_sampled.txt` and `_Color_sample
 
 The table below details the final dimensions of the datasets after preprocessing, cleaning, and Stratified Sampling. The "Features" column represents the exact number of numerical columns retained in the `[dataset]_sampled.txt` files for clustering, completely isolated from the Protected Attribute.
 
-| Dataset | Sampling Fraction | Sampled Rows | Features (Columns) | Protected Attribute File |
-|---------|-------------------|--------------|--------------------|--------------------------|
-| **Adult (Census Income)** | 10% | 3,256 | 6 | `adult_Color_sampled.txt` (Gender) |
-| **Bank Marketing** | 10% | 4,111 | 9 | `bank_Color_sampled.txt` (Marital Status)|
-| **Credit Card Default** | 10% | 3,000 | 14 | `credit_card_Color_sampled.txt` (Gender) |
-| **Census (US 1990)** | 2% | 49,166 | 67* | `uscensus_Color_sampled.txt` (Gender) |
+| Dataset | Sampling Fraction | Sampled Rows | Features (Columns) | Protected Attribute File | Protected Ratio (Class 0 : Class 1) |
+|---------|-------------------|--------------|--------------------|--------------------------|-------------------------------------|
+| **Adult (Census Income)** | 10% | 3,256 | 6 | `adult_Color_sampled.txt` (Gender) | 33.1% : 66.9% |
+| **Bank Marketing** | 10% | 4,111 | 9 | `bank_Color_sampled.txt` (Marital Status)| 39.4% : 60.6% |
+| **Credit Card Default** | 10% | 3,000 | 14 | `credit_card_Color_sampled.txt` (Gender) | 60.4% : 39.6% |
+| **Census (US 1990)** | 2% | 49,166 | 67* | `uscensus_Color_sampled.txt` (Gender) | 48.5% : 51.5% |
 
 *\*Note for US Census 1990: The original raw file contained 69 columns (caseid + 68 attributes). The highly identifying `caseid` and the protected `iSex` attributes were removed, leaving exactly 67 numerical features for the clustering algorithms.*
 
