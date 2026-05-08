@@ -131,4 +131,6 @@ The table below details the final dimensions of the datasets after preprocessing
 
 *\*Note for US Census 1990: The original raw file contained 69 columns (caseid + 68 attributes). The highly identifying `caseid` and the protected `iSex` attributes were removed, leaving exactly 67 numerical features for the clustering algorithms.*
 
+This repository includes custom-built synthetic datasets (Basic, Circular, Elliptical) designed to challenge fairness constraints in clustering. The data features tight, highly separable geometric clusters with a perfectly balanced (50-50) sensitive attribute. Because the natural spatial groupings are inherently unfair, these datasets serve as strict, controlled testbeds for evaluating the trade-off between clustering quality and demographic parity.
+
 
