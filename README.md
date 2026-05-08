@@ -97,12 +97,12 @@ Widely used datasets for evaluating fairness in clustering and classification ta
 
 | Dataset | Cleaned Samples | Features | Protected Attribute | Description | Source |
 |---------|-----------------|----------|---------------------|--------------------|--------|
-| **Adult (Census Income)** | 32,561 | 6 | Gender (Sex) | Predict whether income > $50K/year based on demographic and employment info. | [Link](https://archive.ics.uci.edu/dataset/2/adult) |
-| **Bank Marketing** | 41,108 | 9 | Marital Status | Predict if a client subscribes to a term deposit from Portuguese bank campaigns. | [Link](https://archive.ics.uci.edu/dataset/222/bank+marketing) |
-| **Credit Card Default** | 30,000 | 14 | Gender (Sex) | Predict probability of credit card default based on demographic and repayment history. | [Link](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients) |
-| **Census (US 1990)** | 2,458,285 | 67 | Gender (Sex) | Socio-economic dataset from US Census Bureau, widely used as a benchmark for fair clustering. | [Link](https://archive.ics.uci.edu/dataset/116/us+census+data+1990) |
-| **Diabetes (Hospital)** | 101,000 | 47 | Race, Gender, Age | Predict 30-day readmission from 10 years of US hospital diabetic patient records. | [Link](https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008) |
-| **ACSIncome** | 1,660,000 | 10 | Gender, Race | Modern alternative to Adult dataset (2018). Predict income with flexible thresholds. | [Link](https://www.openml.org/search?type=data&sort=runs&id=43141&status=active) |
+| **Adult (Census Income)** | 32,561 | 14 | Gender (Sex) | Predict whether income > $50K/year based on demographic and employment info. | [Link](https://archive.ics.uci.edu/dataset/2/adult) |
+| **Bank Marketing** | 41,108 | 16 | Marital Status | Predict if a client subscribes to a term deposit from Portuguese bank campaigns. | [Link](https://archive.ics.uci.edu/dataset/222/bank+marketing) |
+| **Credit Card Default** | 30,000 | 23 | Gender (Sex) | Predict probability of credit card default based on demographic and repayment history. | [Link](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients) |
+| **Census (US 1990)** | 2,458,285 | 68 | Gender (Sex) | Socio-economic dataset from US Census Bureau, widely used as a benchmark for fair clustering. | [Link](https://archive.ics.uci.edu/dataset/116/us+census+data+1990) |
+| **Diabetes (Hospital)** | 101K | 47 | Race, Gender, Age | Predict 30-day readmission from 10 years of US hospital diabetic patient records. | [Link](https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008) |
+| **ACSIncome** | 1,66M | 10 | Gender, Race | Modern alternative to Adult dataset (2018). Predict income with flexible thresholds. | [Link](https://www.openml.org/search?type=data&sort=runs&id=43141&status=active) |
 
 *Note: The Feature count represents the specific continuous/numerical variables extracted during this project's preprocessing phase, not the raw column count of the original files.*
 
