@@ -96,3 +96,47 @@ Widely used datasets for evaluating fairness in clustering and classification ta
 
 
 
+
+
+
+
+
+# Fair Clustering & Classification Data Preprocessing
+
+This repository contains data preprocessing and sampling scripts for several widely used datasets in machine learning. The primary goal is to prepare these datasets for **Fairness in Clustering and Classification** research by isolating numerical features and extracting protected/sensitive attributes into separate labels.
+
+## 🛠 Preprocessing Pipeline
+
+For each dataset, the preprocessing script performs the following operations:
+1. **Data Cleaning:** Removes invalid rows, missing values, or instances with "unknown" entries.
+2. **Feature Extraction:** Isolates continuous/numerical attributes to be used by the learning algorithms (saved as `[dataset_name].txt`). Categorical variables are either encoded or dropped depending on the dataset.
+3. **Protected Attribute Isolation:** Extracts the sensitive attribute (e.g., Gender, Marital Status) and encodes it as a binary variable (saved as `[dataset_name]_Color.txt`). This ensures the algorithm does not train directly on the sensitive attribute, allowing it to be used purely for fairness evaluation (e.g., calculating Balance or Disparate Impact).
+
+## 📊 Datasets 
+
+Widely used datasets for evaluating fairness in clustering and classification tasks. The metrics below reflect the **actual cleaned data** produced by our preprocessing scripts.
+
+| Dataset | Cleaned Samples | Features | Protected Attribute | Task / Description | Source |
+|---------|-----------------|----------|---------------------|--------------------|--------|
+| **Adult (Census Income)** | 32,561 | 6 | Gender (Sex) | Predict whether income > $50K/year based on demographic and employment info. | [Link](https://archive.ics.uci.edu/dataset/2/adult) |
+| **Bank Marketing** | 41,108 | 9 | Marital Status | Predict if a client subscribes to a term deposit from Portuguese bank campaigns. | [Link](https://archive.ics.uci.edu/dataset/222/bank+marketing) |
+| **Credit Card Default** | 30,000 | 14 | Gender (Sex) | Predict probability of credit card default based on demographic and repayment history. | [Link](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients) |
+| **Census (US 1990)** | 2,458,285 | 67 | Gender (Sex) | Socio-economic dataset from US Census Bureau, widely used as a benchmark for fair clustering. | [Link](https://archive.ics.uci.edu/dataset/116/us+census+data+1990) |
+| **Diabetes (Hospital)** | 101,000 | 47 | Race, Gender, Age | Predict 30-day readmission from 10 years of US hospital diabetic patient records. | [Link](https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008) |
+| **ACSIncome** | 1,660,000 | 10 | Gender, Race | Modern alternative to Adult dataset (2018). Predict income with flexible thresholds. | [Link](https://www.openml.org/search?type=data&sort=runs&id=43141&status=active) |
+
+*Note: The Feature count represents the specific continuous/numerical variables extracted during this project's preprocessing phase, not the raw column count of the original files.*
+
+## Data Reduction & Stratified Sampling Strategy
+
+To optimize computational efficiency and model training times, a **Stratified Sampling** technique was applied across the preprocessed datasets. 
+
+* **Standard Datasets (Adult, Bank, Credit Card):** Retained exactly **10%** of the original data volume.
+* **Massive Datasets (US Census 1990):** Retained **2%** of the original data volume.
+
+This approach was strictly chosen over simple random sampling to ensure **Data Integrity** and protect against class imbalance. By grouping the data by the protected label attribute before sampling, we guarantee that the smaller datasets perfectly mirror the statistical distribution and underlying patterns of the original, massive files. 
+
+This results in highly representative subsets (`_sampled.txt` and `_Color_sampled.txt`) that drastically accelerate the algorithm testing phase without compromising the predictive validity or the fairness evaluation of the final machine learning models.
+
+
+
