@@ -1,2 +1,0 @@
-k=10, alpha=10, beta=15, samples_per_cluster=100, std=2
-

@@ -1,2 +1,0 @@
-k=num 8, alpha=std 4, beta=radius 100, samples_per_cluster=200, std=4
-
